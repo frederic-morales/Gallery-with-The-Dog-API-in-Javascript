@@ -7,19 +7,35 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Dogs Randoms</h1>
-    <div class="images-container">
-        <div class="img-container">
-            <img id="img1" alt="Foto de un chucho cualquiera">
+
+    <span id="error"></span>
+
+    <section class="images-container">
+        <h1>Dogs Randoms</h1>
+        <div class="image-button-container">
+            <div class="img-container">
+                <img id="img1" alt="Foto de un chucho cualquiera">
+            </div>
+            <button onclick="saveFavorites()">Agregar a favoritos</button>    
         </div>
-        <div class="img-container">
-            <img id="img2" alt="Foto de un chucho cualquiera">
+        <div class="image-button-container">
+            <div class="img-container">
+                <img id="img2" alt="Foto de un chucho cualquiera">
+            </div>
+            <button onclick="saveFavorites()">Agregar a favoritos</button>    
         </div>
-        <div class="img-container">
-            <img id="img3" alt="Foto de un chucho cualquiera">
+        <div class="image-button-container">
+            <div class="img-container">
+                <img id="img3" alt="Foto de un chucho cualquiera">
+            </div>
+            <button onclick="saveFavorites()">Agregar a favoritos</button>    
         </div>
+        <button id="change-button">Change</button>
+    </section>
+
+    <div class="favorites-container">
+        
     </div>
-    <button>Change</button>
     <script src="./code.js"></script>
 </body>
 </html>

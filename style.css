@@ -7,22 +7,47 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+    margin-top: 40px;
 }
 body .images-container{
     width: 70%;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
-body .images-container .img-container{
-    margin-top: 20px;
+body .images-container h1{
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+}
+.images-container .image-button-container{
+    margin-top: 50px;
     width: 30%;
-    height: 500px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.images-container .image-button-container .img-container{
+    height: 300px;
+    width: 100%;
 }
 .img-container img{
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+.images-container .image-button-container button{
+    width: 50%;
+    height: 40px;
+    font-size: 12px;
+    border: none;
+    background-color: darkslateblue;
+    color: white;
+    border-radius: 30px;
+}
+.images-container .image-button-container button:hover{
+    background-color: #322870;
 }
 body button{
     margin-top: 20px;

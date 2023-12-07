@@ -1,6 +1,9 @@
 const API_URL_RANDOMS = 'https://api.thedogapi.com/v1/images/search?limit=3&api_key=live_xQIy8peowL7KxnUEI5CJ5MLOrj0RW3eYDFJtafjxbQvoc9gvrtNRAHCAug1jC0Bd'
 
-const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?limit=8&api_key=live_xQIy8peowL7KxnUEI5CJ5MLOrj0RW3eYDFJtafjxbQvoc9gvrtNRAHCAug1jC0Bd'
+const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?limit=50&api_key=live_xQIy8peowL7KxnUEI5CJ5MLOrj0RW3eYDFJtafjxbQvoc9gvrtNRAHCAug1jC0Bd'
+
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_xQIy8peowL7KxnUEI5CJ5MLOrj0RW3eYDFJtafjxbQvoc9gvrtNRAHCAug1jC0Bd`
+
 
 const buttonChange = document.getElementById('change-button')
 const addFavoriteButton = document.getElementById('add-favorites-button')
@@ -21,6 +24,23 @@ async function changeImage(){
         img3.src = data[2].url
 
         console.log(data);
+
+        const btn1 = document.getElementById('btn-random1')
+        const btn2 = document.getElementById('btn-random2')
+        const btn3 = document.getElementById('btn-random3')
+
+        btn1.addEventListener("click", () => {
+            saveFavorites(data[0].id)
+            //console.log("Soy saveFavorite btn1");
+        })
+        btn2.addEventListener("click", () => {
+            saveFavorites(data[1].id)
+            //console.log("Soy saveFavorite btn2");
+        })
+        btn3.addEventListener("click", () => {
+            saveFavorites(data[2].id)
+            //console.log("Soy saveFavorite btn3");
+        })
     }
 }
 
@@ -31,13 +51,42 @@ async function loadFavorites(){
     if(res.status !== 200){
         spanError.innerHTML = `Hubo un error: ${res.status}`
     } else{
-        console.log("Todo perfecto bro");
+        const section = document.getElementById('favorites-container')
+        section.innerHTML = " "
+        
+        const h2 = document.createElement('h2')
+        const h2Text = document.createTextNode('Favoritos')
+        h2.appendChild(h2Text)
+        section.appendChild(h2)
+
+        data.forEach(dog => {
+            const article = document.createElement('article')
+            const div = document.createElement('div')
+            const img = document.createElement('img')
+            const btn = document.createElement('button')
+            const btonText = document.createTextNode('Eliminar de favoritos')
+
+            btn.addEventListener('click', () => deleteFromFavorites(dog.id))
+
+            img.src = dog.image.url
+            btn.appendChild(btonText)
+            div.appendChild(img)
+            article.appendChild(div)
+            article.appendChild(btn)
+            section.appendChild(article)
+
+            article.classList.add('favorite-img-container')
+            div.classList.add('img-container')
+
+
+            //dog.image.url
+        });
     }
 
     console.log(data);
 }
 
-async function saveFavorites(){
+async function saveFavorites(id){
     console.log("save")
     const res = await fetch(API_URL_FAVORITES, {
         method: 'POST',
@@ -46,19 +95,35 @@ async function saveFavorites(){
             //'x-api-key': 'live_xQIy8peowL7KxnUEI5CJ5MLOrj0RW3eYDFJtafjxbQvoc9gvrtNRAHCAug1jC0Bd'
         },
         body: JSON.stringify({
-            image_id: "-Lbz7P9jl"
+            image_id: id
         }),
     })
     if (res.status !== 200) {
         const data = await res.text();
-        console.error("Error en la solicitud:", res.status, data);
-        spanError.innerHTML = "Este es el error: " + data;
+        console.error("Error en la solicitud:", res.status, data)
+        spanError.innerHTML = "Este es el error: " + data
     } else {
-        const data = await res.json();
-        console.log(data);
+        const data = await res.json()
+        console.log(data)
+        loadFavorites()
     }
 }
 
+async function deleteFromFavorites(id){
+    const res = await fetch(API_URL_FAVORITES_DELETE(id), {
+        method: 'DELETE'
+    })
+    const dada = await res.json()
+
+    if (res.status !== 200) {
+        const data = await res.text();
+        console.error("Error en la solicitud:", res.status, data)
+        spanError.innerHTML = "Este es el error: " + data
+    } else{
+        console.log("liminacion exitosa");
+        loadFavorites()
+    }
+}
 
 changeImage()
 loadFavorites()

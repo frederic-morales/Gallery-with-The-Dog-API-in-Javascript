@@ -8,9 +8,11 @@ body{
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
+    margin-bottom: 40px;
 }
-body .images-container{
-    width: 70%;
+body .images-container, body .favorites-container{
+    width: 85%;
+    max-width: 1224px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -18,47 +20,57 @@ body .images-container{
 body .images-container h1{
     width: 100%;
     text-align: center;
-    font-size: 40px;
+    font-size: 60px;
 }
-.images-container .image-button-container{
+.images-container .image-button-container, .favorites-container .favorite-img-container{
     margin-top: 50px;
-    width: 30%;
-    height: 400px;
+    width: 32%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.images-container .image-button-container .img-container{
-    height: 300px;
+.img-container{
+    height: 375px;
     width: 100%;
 }
 .img-container img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
-.images-container .image-button-container button{
+.images-container .image-button-container button, .favorites-container .favorite-img-container button{
     width: 50%;
-    height: 40px;
+    max-width: 200px;
+    height: 50px;
     font-size: 12px;
     border: none;
     background-color: darkslateblue;
     color: white;
     border-radius: 30px;
 }
-.images-container .image-button-container button:hover{
+.images-container .image-button-container button:hover, .favorites-container .favorite-img-container button:hover{
     background-color: #322870;
 }
-body button{
-    margin-top: 20px;
-    width: 200px;
-    height: 50px;
+body .images-container button, .favorites-container button{
+    margin-top: 40px;
+    width: 210px;
+    height: 60px;
     font-size: 15px;
     border: none;
     background-color: darkslateblue;
     color: white;
-    border-radius: 30px;
+    border-radius: 60px;
 }
-body button:hover{
+body .images-container button:hover{
     background-color: #322870;
+}
+
+/* Section Favorites */
+body .favorites-container{
+    margin-top: 50px;
+}
+body .favorites-container h2{
+    font-size: 60px;
+    width: 100%;
+    text-align: center;
 }

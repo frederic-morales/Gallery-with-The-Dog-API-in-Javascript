@@ -4,6 +4,8 @@ const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?limit=50&api_
 
 const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_xQIy8peowL7KxnUEI5CJ5MLOrj0RW3eYDFJtafjxbQvoc9gvrtNRAHCAug1jC0Bd`
 
+const API_URL_UPLOAD = 'https://api.thedogapi.com/v1/images/upload'
+
 
 const buttonChange = document.getElementById('change-button')
 const addFavoriteButton = document.getElementById('add-favorites-button')
@@ -99,7 +101,7 @@ async function saveFavorites(id){
         }),
     })
     if (res.status !== 200) {
-        const data = await res.text();
+        const data = await res.json();
         console.error("Error en la solicitud:", res.status, data)
         spanError.innerHTML = "Este es el error: " + data
     } else {
@@ -113,16 +115,45 @@ async function deleteFromFavorites(id){
     const res = await fetch(API_URL_FAVORITES_DELETE(id), {
         method: 'DELETE'
     })
-    const dada = await res.json()
 
     if (res.status !== 200) {
-        const data = await res.text();
+        const data = await res.json();
         console.error("Error en la solicitud:", res.status, data)
         spanError.innerHTML = "Este es el error: " + data
     } else{
         console.log("liminacion exitosa");
         loadFavorites()
     }
+}
+
+async function uploadDogPhoto(){
+    const form = document.getElementById('uploadingForm')
+    const formData = new FormData(form)
+    //console.log(formData.get('file'))
+
+    const res = await fetch(API_URL_UPLOAD, {
+        method: 'POST',
+        headers: {
+            //'Content-Type': 'multipart/form-data',
+            'X-API-KEY': 'live_xQIy8peowL7KxnUEI5CJ5MLOrj0RW3eYDFJtafjxbQvoc9gvrtNRAHCAug1jC0Bd'
+        },
+        body: formData
+    })
+
+
+    if (res.status > 100 && res.status < 200 || res.status > 300) {
+        const data = await res.json();
+        console.error("Error en la solicitud:", res.status, data)
+        console.log(data)
+        spanError.innerHTML = "Este es el error: " + data
+    } else{
+        console.log("Foto subida exitosamente")
+        const data = await res.json();
+        console.log("estado:", res.status, data)
+        const photoId = data.id
+        saveFavorites(photoId)
+    }
+
 }
 
 changeImage()

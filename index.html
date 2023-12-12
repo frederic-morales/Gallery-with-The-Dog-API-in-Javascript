@@ -30,13 +30,16 @@
             </div>
             <button id="btn-random3">Agregar a favoritos</button>    
         </div>
-        <button id="change-button">Change</button>
+        <button id="change-button" class="change-button">Change</button>
     </section>
 
     <section class="uploadingDog">
-        <h2>Sube la foto de tu chucho</h2>
+        <h2>Sube la foto de tu perrito</h2>
+        <div class="uploadingDog_previewIMG" id="uploadingDog_previewIMG">
 
+        </div>
         <form id="uploadingForm">
+            <label for="file">Seleccionar foto</label>
             <input id="file" type="file" name="file">
             <button type="button" onclick="uploadDogPhoto()">Subir foto</button>
         </form>

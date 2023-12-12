@@ -9,6 +9,8 @@ const API_URL_UPLOAD = 'https://api.thedogapi.com/v1/images/upload'
 
 const buttonChange = document.getElementById('change-button')
 const addFavoriteButton = document.getElementById('add-favorites-button')
+const previewIMG = document.createElement('img') // FOTO VISTA PREVIA AL SUBIR TU CHUCHO
+
 const spanError = document.getElementById('error')
 
 async function changeImage(){
@@ -152,6 +154,7 @@ async function uploadDogPhoto(){
         console.log("estado:", res.status, data)
         const photoId = data.id
         saveFavorites(photoId)
+        previewIMG.style.display = "none"
     }
 
 }
@@ -159,6 +162,22 @@ async function uploadDogPhoto(){
 changeImage()
 loadFavorites()
 buttonChange.addEventListener("click", changeImage)
+
+const input = document.getElementById('file')
+input.addEventListener('change', event => {
+    //console.log(event.target.files[0].name)
+    const divImg = document.getElementById('uploadingDog_previewIMG')
+    divImg.appendChild(previewIMG)
+
+    if (event.target.files[0]) {
+        previewIMG.style.display = "block"
+        const reader = new FileReader()
+        reader.onload = () => previewIMG.src = reader.result
+        reader.readAsDataURL(event.target.files[0])
+    } else{
+        log("hola bro soy else")
+    }   
+})
 
 
 /*function changeImage(){

@@ -7,12 +7,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 body .images-container, body .favorites-container{
-    width: 85%;
-    max-width: 1224px;
+    width: 75%;
+    max-width: 1050px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -20,17 +20,17 @@ body .images-container, body .favorites-container{
 body .images-container h1{
     width: 100%;
     text-align: center;
-    font-size: 60px;
+    font-size: 50px;
 }
 .images-container .image-button-container, .favorites-container .favorite-img-container{
-    margin-top: 50px;
-    width: 32%;
+    margin-top: 25px;
+    width: 28%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .img-container{
-    height: 375px;
+    height: 250px;
     width: 100%;
 }
 .img-container img{
@@ -39,30 +39,31 @@ body .images-container h1{
     object-fit: cover;
 }
 .images-container .image-button-container button, .favorites-container .favorite-img-container button{
+    margin-top: 15px;
     width: 50%;
     max-width: 200px;
-    height: 50px;
+    height: 40px;
     font-size: 12px;
     border: none;
-    background-color: darkslateblue;
+    background-color: #6951ff;
     color: white;
     border-radius: 30px;
 }
 .images-container .image-button-container button:hover, .favorites-container .favorite-img-container button:hover{
-    background-color: #322870;
+    background-color: darkslateblue;
 }
-body .images-container button, .favorites-container button{
-    margin-top: 40px;
-    width: 210px;
-    height: 60px;
+body .images-container .change-button{
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
     font-size: 15px;
     border: none;
-    background-color: darkslateblue;
+    background-color: #6951ff;
     color: white;
     border-radius: 60px;
 }
 body .images-container button:hover{
-    background-color: #322870;
+    background-color: darkslateblue;
 }
 
 /* Section Favorites */
@@ -73,4 +74,65 @@ body .favorites-container h2{
     font-size: 60px;
     width: 100%;
     text-align: center;
+}
+
+/* SUBRI IMAGEN */
+body .uploadingDog{
+    margin-top: 20px;
+    display: flex;
+    width: 75%;
+    max-width: 1050px;
+    justify-content: space-between;
+    align-items: center;
+}
+.uploadingDog h2{
+    width: 40%;
+    font-size: 35px;
+}
+.uploadingDog form{
+    width: 25%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.uploadingDog form input{
+    display: none;
+}
+.uploadingDog form label{
+    display: block;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    background-color: #6951ff;
+    border-radius: 30px;
+    color: white;
+    margin-top: 15px;
+}
+.uploadingDog form label:hover{
+    background-color: darkslateblue;
+}
+
+.uploadingDog form button{
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    margin-top: 15px;
+}
+.uploadingDog form button:hover{
+    background-color: #ff6000;
+}
+
+.uploadingDog .uploadingDog_previewIMG{
+    width: 26%;
+    height: 225px;
+}
+.uploadingDog .uploadingDog_previewIMG img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
